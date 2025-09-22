@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const STATUSES = Object.freeze({
+export const STATUSES = Object.freeze({
     IDLE: 'idle',
     ERROR: 'error',
     LOADING: 'loading'
@@ -26,18 +26,17 @@ export default productSlice.reducer;
 
 //Thunk
 export function fetchProduct() {
-    async function fetchProductThunk(dispatch, getState) {
+    return async function fetchProductThunk(dispatch, getState) {
         dispatch(setStatus(STATUSES.LOADING));
         try {
             const res = await fetch('https://fakestoreapi.com/products');
             const data = await res.json();
             dispatch(setProducts(data));
+            dispatch(setStatus(STATUSES.IDLE));
         } catch (err) {
             console.log(err);
             dispatch(setStatus(STATUSES.ERROR));;
         }
         
     }
-
-    fetchProductThunk();
 }
