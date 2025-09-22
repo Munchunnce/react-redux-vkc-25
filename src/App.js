@@ -1,18 +1,19 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { Provider } from 'react-redux';
+import store from './store/store';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Navigation from './components/Navigation';
-import { Provider } from 'react-redux';
-import { store } from './store/store';
+
 
 
 function App() {
   return (
     <div className="App">
-      <Provider>
-        <BrowserRouter store={store}>
+      <Provider store={store}>
+        <BrowserRouter>
         <Navigation/>
           <Routes>
             <Route exact path='/' element={<Home/>}></Route>
