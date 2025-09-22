@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { add } from '../store/cartSlice';
 import { fetchProduct, STATUSES } from '../store/productSlice';
@@ -26,7 +26,13 @@ const Products = () => {
 
     if(status === STATUSES.LOADING){
         return <h2>Loading...</h2>
-    }
+    };
+
+    if(status === STATUSES.ERROR){
+        return <h2>Somthing went wrong...</h2>
+    };
+
+
   return (
     <div className='productsWrapper'>
         {
@@ -43,4 +49,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default Products;
